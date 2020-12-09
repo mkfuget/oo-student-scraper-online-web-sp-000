@@ -20,6 +20,7 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     html = Nokogiri::HTML(URI.open(profile_url))
+<<<<<<< HEAD
     out = {
       :bio => html.css('p').text,
       :profile_quote => html.css('.profile-quote').text,
@@ -39,6 +40,17 @@ class Scraper
       end
     end
     return out
+=======
+    out = []
+    student_bio = html.css('.bio-block content-holder').css('p').text
+    student_quote = html.css('.profile_quote').text
+    student_social_data = html.css('.social-icon-container')
+    student_twitter = student_social_data.css('a:first-child').attribute('href').value
+    student_linkedin = student_social_data.css('a:nth-child(2)').attribute('href').value
+    student_github = student_social_data.css('a:nth-child(3)').attribute('href').value
+    student_blog = student_social_data.css('a:nth-child(4)').attribute('href').value
+    binding.pry
+>>>>>>> 0c14622cd932a4953035aa1f5bd95cd4a8f6cfe9
   end
 
 end
